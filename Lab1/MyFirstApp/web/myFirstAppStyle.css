@@ -1,0 +1,42 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Sep. 9, 2021, 1:49:03 p.m.
+    Author     : toby
+*/
+.picture{
+    width: 200px;
+    height: 200px;
+   
+}
+body{
+    background: aqua;
+     
+}
+.text{
+    font-size: 30px;
+}
+
+
+header {
+    background-color: royalblue;
+    color: white;
+    font-family: 'Monoton', cursive;
+    font-size: 20px;
+    line-height: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-shadow: 5px 5px 10px darkmagenta;
+    position: relative;
+    overflow: hidden;
+}
+header img{
+    float: left;
+    padding-right: 10px;
+    width: 100px;
+    height: 100px;
+}
+
