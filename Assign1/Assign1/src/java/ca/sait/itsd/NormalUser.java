@@ -35,7 +35,7 @@ public class NormalUser extends HttpServlet {
         try ( PrintWriter out = response.getWriter()) {
             
             String aString=request.getParameter("text");
-            String textString="Palindrome?";
+            String textString="Palindrome?:";
             
             if (aString==null) {
                 

@@ -46,7 +46,7 @@ public class Admin extends HttpServlet {
                  if(checkPass(passwordString)){
                   textString+="Acceptable";
               }else{
-                  textString+="Too weak";
+                  textString+="Too weak!";
               }
              }
               

@@ -42,10 +42,10 @@ public class Login extends HttpServlet {
             out.println("<title>Servlet LoginPage</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Login </h1>\n" +
+            out.println("<h1>Login Page </h1>\n" +
                             "<form action=\"Validate\" method=\"get\">\n" +
                             "  Username: <input type=\"text\" name=\"username\"><br/>\n" +
-                            "  Password: <input type=\"text\" name=\"password\"><br/>\n" +
+                            "  Password: <input type=\"password\" name=\"password\"><br/>\n" +
                              "  <input type=\"submit\" value=\"Login\">\n" +
                                "</form>");
               if(message != null) {

@@ -38,7 +38,7 @@ public class Validate extends HttpServlet {
             
             String logOutString=request.getParameter("Logout");
             String messageString="Logged out";
-            String bothMessageString="Both values are required";
+            String bothMessageString="Both username and password are required!";
             String invalidString="Invalid username or password!";
             
               if (logOutString==null) {

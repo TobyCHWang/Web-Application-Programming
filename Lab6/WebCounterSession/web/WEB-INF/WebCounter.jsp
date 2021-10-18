@@ -22,6 +22,6 @@
        </form>
        <br>
 
-       ${sessionScope.count}
+      Count: ${sessionScope.count}
     </body>
 </html>
