@@ -7,6 +7,8 @@ package ca.sait.itsd;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,6 +36,9 @@ public class registerPageController extends HttpServlet {
         String username=request.getParameter("usernameRegister");
        String password=request.getParameter("passwordRegister");
        String registerString=request.getParameter("login");
+       ArrayList<User> userList=new ArrayList<User>();
+       ServletContext application = getServletContext();
+       User usernameUser=new User(username,password);
        
        
         if (registerString==null) {
@@ -49,7 +54,31 @@ public class registerPageController extends HttpServlet {
             request.setAttribute("message", "Both username and password are required!");
             request.getRequestDispatcher("WEB-INF/registerPage.jsp").forward(request, response);
             
+        }else{
+            
+            
+//            userList.add(usernameUser);
+//            System.out.println(userList.get(0).getUsername());
+                if ((ArrayList<User>)application.getAttribute("usernames")!=null) {
+           
+                       ((ArrayList<User>)application.getAttribute("usernames")).add(usernameUser);
+                       
+                       
+            
+            }else{
+                    application.setAttribute("usernames", userList);
+                      ((ArrayList<User>)application.getAttribute("usernames")).add(usernameUser);
+                     
+                     
+             }
+                
+                  
+                 
+                  request.getRequestDispatcher("WEB-INF/registerPage.jsp").forward(request, response);
+                
+            
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

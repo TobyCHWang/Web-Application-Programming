@@ -4,7 +4,11 @@
     Author     : toby
 --%>
 
+<%@page import="ca.sait.itsd.User"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -20,7 +24,44 @@
         </form>
         ${requestScope.message}
         <br/>
-        <a href="loginPageController?login=true">Back to Login Page</a>
+        <a href="loginPageController?login=true">Back to Login Page</a> <br><br>
+        
+     
+         
+     	<%
+         ArrayList<User> userList=(ArrayList<User>)request.getServletContext().getAttribute("usernames");
+         String usernameString=request.getParameter("usernameRegister");
+          ArrayList<String> list=new ArrayList<String>();
+          
+          if(usernameString==null){
+          
+            }else{
+              for(int i=0;i<userList.size()-1;i++){
+                list.add(userList.get(i).getUsername());
+            }
+        
+        
+        
+             
+         
+         
+         if(list.contains(usernameString)){
+                out.println("Username is already taken, please select a different username");
+            }else{
+             out.println("User "+"'"+usernameString+"'"+" created successfully" );
+            }
+            }
+
+     %>
+	 
+          
+      
+          
+           
+          
+      
+          
+           
     </body>
-    </body>
+    
 </html>

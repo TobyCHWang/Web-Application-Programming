@@ -37,6 +37,11 @@ public class loginPageController extends HttpServlet {
        String username=request.getParameter("username");
        String password=request.getParameter("password");
        String registerString=request.getParameter("register");
+       String usernameR=request.getParameter("usernameRegister");
+       String passwordR=request.getParameter("passwordRegister");
+       String registerStringR=request.getParameter("login");
+       
+       
        
        
         if (registerString==null) {
