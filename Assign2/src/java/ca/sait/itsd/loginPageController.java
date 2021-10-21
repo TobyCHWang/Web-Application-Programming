@@ -40,6 +40,7 @@ public class loginPageController extends HttpServlet {
        ArrayList<User> userList=(ArrayList<User>)request.getServletContext().getAttribute("usernames");
         ArrayList<String> usernameList=new ArrayList<String>();
          ArrayList<String> passwordList=new ArrayList<String>();
+         ServletContext application = getServletContext();
       
        
        
@@ -59,7 +60,7 @@ public class loginPageController extends HttpServlet {
             request.getRequestDispatcher("WEB-INF/loginPage.jsp").forward(request, response);
             
         }else{
-            //need to test duplicate conditon
+            //fix login condition duplicate conditon
             if(userList==null){
                   request.setAttribute("message", "Invalid username or password!");
                  request.getRequestDispatcher("WEB-INF/loginPage.jsp").forward(request, response);
@@ -70,6 +71,7 @@ public class loginPageController extends HttpServlet {
                 passwordList.add(userList.get(i).getPassword());
                 
                 if (username.equals(userList.get(i).getUsername()) && password.equals(userList.get(i).getPassword())) {
+                    application.setAttribute("welcomeMessage", username);
                      request.getRequestDispatcher("WEB-INF/notePage.jsp").forward(request, response);   
                 }else{
                     request.setAttribute("message", "Invalid username or password!");
