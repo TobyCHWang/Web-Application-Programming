@@ -4,6 +4,9 @@
     Author     : toby
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="java.util.ArrayList"%>
+<%@page import="ca.sait.itsd.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -21,5 +24,14 @@
         ${requestScope.message}
         <br/>
         <a href="loginPageController?register=true">Register New User</a>
+        
+     <c:set var="username" value="${param.username}" scope="page"/>
+         
+       <c:forEach var="word" items="${applicationScope.usernames}">
+           
+           <c:set var="usernamelist" value=" ${word.username}" scope="page"/>
+         
+           <c:out value="${usernamelist}"></c:out>
+       </c:forEach>
     </body>
 </html>

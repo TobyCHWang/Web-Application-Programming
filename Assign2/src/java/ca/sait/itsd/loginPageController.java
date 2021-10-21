@@ -37,9 +37,10 @@ public class loginPageController extends HttpServlet {
        String username=request.getParameter("username");
        String password=request.getParameter("password");
        String registerString=request.getParameter("register");
-       String usernameR=request.getParameter("usernameRegister");
-       String passwordR=request.getParameter("passwordRegister");
-       String registerStringR=request.getParameter("login");
+       ArrayList<User> userList=(ArrayList<User>)request.getServletContext().getAttribute("usernames");
+        ArrayList<String> usernameList=new ArrayList<String>();
+         ArrayList<String> passwordList=new ArrayList<String>();
+      
        
        
        
@@ -57,12 +58,57 @@ public class loginPageController extends HttpServlet {
             request.setAttribute("message", "Both username and password are required!");
             request.getRequestDispatcher("WEB-INF/loginPage.jsp").forward(request, response);
             
+        }else{
+            //need to test duplicate conditon
+            if(userList==null){
+                  request.setAttribute("message", "Invalid username or password!");
+                 request.getRequestDispatcher("WEB-INF/loginPage.jsp").forward(request, response);
+            }
+            
+            for(int i=0;i<userList.size();i++){
+                usernameList.add(userList.get(i).getUsername());
+                passwordList.add(userList.get(i).getPassword());
+                
+                if (username.equals(userList.get(i).getUsername()) && password.equals(userList.get(i).getPassword())) {
+                     request.getRequestDispatcher("WEB-INF/notePage.jsp").forward(request, response);   
+                }else{
+                    request.setAttribute("message", "Invalid username or password!");
+                    request.getRequestDispatcher("WEB-INF/loginPage.jsp").forward(request, response);
+                }
+            }
+            
+            System.out.println(usernameList);
+            System.out.println(passwordList);
+            
+           
+             
         }
         
   
         
            
     
+    }
+    
+    public static <T> ArrayList<T> removeDuplicates(ArrayList<T> list)
+    {
+  
+      
+        ArrayList<T> newList = new ArrayList<T>();
+  
+       
+        for (T element : list) {
+  
+            // If this element is not present in newList
+            // then add it
+            if (!newList.contains(element)) {
+  
+                newList.add(element);
+            }
+        }
+  
+       
+        return newList;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

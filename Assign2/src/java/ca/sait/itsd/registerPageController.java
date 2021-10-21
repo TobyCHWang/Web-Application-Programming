@@ -41,12 +41,7 @@ public class registerPageController extends HttpServlet {
        User usernameUser=new User(username,password);
        
        
-        if (registerString==null) {
-          
-             }else if(registerString.equals("true")){
-             
-              request.getRequestDispatcher("WEB-INF/loginPage.jsp").forward(request, response);
-          }
+     
        
         if (username==null && password==null) {
             request.getRequestDispatcher("WEB-INF/registerPage.jsp").forward(request, response);
@@ -78,6 +73,15 @@ public class registerPageController extends HttpServlet {
                 
             
         }
+        
+           if (registerString==null) {
+          
+             }else if(registerString.equals("true")){
+                 
+                  application.setAttribute("usernames", userList);
+             
+              request.getRequestDispatcher("loginPageController").forward(request, response);
+          }
         
     }
 
