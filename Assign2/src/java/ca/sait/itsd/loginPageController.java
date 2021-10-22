@@ -70,14 +70,22 @@ public class loginPageController extends HttpServlet {
                 usernameList.add(userList.get(i).getUsername());
                 passwordList.add(userList.get(i).getPassword());
                 
-                if (username.equals(userList.get(i).getUsername()) && password.equals(userList.get(i).getPassword())) {
+            
+            }
+            
+               int usernameIndex=usernameList.indexOf(username);
+            
+            if (usernameIndex==-1) {
+                 request.setAttribute("message", "Invalid username or password!");
+                 request.getRequestDispatcher("WEB-INF/loginPage.jsp").forward(request, response);
+            }else{
+                if (username.equals(usernameList.get(usernameIndex))&& password.equals(passwordList.get(usernameIndex))) {
                     application.setAttribute("welcomeMessage", username);
-                     request.getRequestDispatcher("WEB-INF/notePage.jsp").forward(request, response);   
+                     request.getRequestDispatcher("WEB-INF/notePage.jsp").forward(request, response);
                 }else{
                     request.setAttribute("message", "Invalid username or password!");
                     request.getRequestDispatcher("WEB-INF/loginPage.jsp").forward(request, response);
                 }
-            }
             
             System.out.println(usernameList);
             System.out.println(passwordList);
@@ -92,26 +100,10 @@ public class loginPageController extends HttpServlet {
     
     }
     
-    public static <T> ArrayList<T> removeDuplicates(ArrayList<T> list)
-    {
+    
   
-      
-        ArrayList<T> newList = new ArrayList<T>();
-  
-       
-        for (T element : list) {
-  
-            // If this element is not present in newList
-            // then add it
-            if (!newList.contains(element)) {
-  
-                newList.add(element);
-            }
-        }
-  
-       
-        return newList;
     }
+      
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

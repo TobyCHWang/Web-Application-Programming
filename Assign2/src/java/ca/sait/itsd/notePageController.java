@@ -40,44 +40,45 @@ public class notePageController extends HttpServlet {
         String logoutString = request.getParameter("logout");
         String background = request.getParameter("background");
         String option = request.getParameter("option");
-        ArrayList<Note> noteList=new ArrayList<Note>();
-        String noteString=request.getParameter("note");
+        ArrayList<Note> noteList = new ArrayList<Note>();
+        String noteString = request.getParameter("note");
+        String deleteString = request.getParameter("delete");
         //date
         LocalDateTime currentDateTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
         String formattedDateTime = currentDateTime.format(formatter);
-        
-        Note note=new Note(noteString,formattedDateTime);
+
+        Note note = new Note(noteString, formattedDateTime);
 
         HttpSession session = request.getSession();
-         if (noteString==null) {
-            
-        }else if (noteString.isEmpty()) {
+
+        if (noteString == null) {
+
+        } else if (noteString.isEmpty()) {
             request.setAttribute("message", "Please enter note inforamtion");
             request.getRequestDispatcher("WEB-INF/notePage.jsp").forward(request, response);
-        }else{
-              if ((ArrayList<Note>)session.getAttribute("notes")!=null) {
-           
-                       ((ArrayList<Note>)session.getAttribute("notes")).add(note);
-                       
-                       
-            
-            }else{
-                    session.setAttribute("notes", noteList);
-                      ((ArrayList<Note>)session.getAttribute("notes")).add(note);
-                      
-        
-                     
-             }
-            
-              request.getRequestDispatcher("WEB-INF/notePage.jsp").forward(request, response);
+        } else {
+            if ((ArrayList<Note>) session.getAttribute("notes") != null) {
+
+                ((ArrayList<Note>) session.getAttribute("notes")).add(note);
+
+            } else {
+                session.setAttribute("notes", noteList);
+                ((ArrayList<Note>) session.getAttribute("notes")).add(note);
+
+            }
+              request.setAttribute("message", "New note added");
+            request.getRequestDispatcher("WEB-INF/notePage.jsp").forward(request, response);
         }
-         
+
         if (logoutString == null) {
 
         } else if (logoutString.equals("true")) {
             session.invalidate();
             request.setAttribute("message", "Logged out");
+            Cookie optionCookie = new Cookie("option", option);
+            optionCookie.setMaxAge(60 * 60);
+            response.addCookie(optionCookie);
             request.getRequestDispatcher("WEB-INF/loginPage.jsp").forward(request, response);
         }
 
@@ -87,9 +88,7 @@ public class notePageController extends HttpServlet {
             if (background == null) {
 
             } else {
-                if (option == null) {
 
-                }
                 Cookie optionCookie = new Cookie("option", option);
                 optionCookie.setMaxAge(60 * 60);
                 response.addCookie(optionCookie);
@@ -97,8 +96,39 @@ public class notePageController extends HttpServlet {
             request.setAttribute("message", "Background colour set");
             request.getRequestDispatcher("WEB-INF/notePage.jsp").forward(request, response);
         }
-        
-       
+
+        if (deleteString == null) {
+
+        } else {
+            ArrayList<Note> list = (ArrayList<Note>) request.getSession().getAttribute("notes");
+            System.out.println(list);
+            System.out.println(deleteString);
+            ArrayList<String> notelistStrings = new ArrayList<String>();
+            ArrayList<String> datelist = new ArrayList<String>();
+
+            for (int i = 0; i < list.size(); i++) {
+                notelistStrings.add(list.get(i).getNote());
+                datelist.add(list.get(i).getDateTime());
+            }
+
+            for (int i = 0; i < datelist.size(); i++) {
+                if (deleteString.equals(datelist.get(i))) {
+                    datelist.remove(datelist.get(i));
+                    notelistStrings.remove(notelistStrings.get(i));
+                }
+            }
+
+            System.out.println(deleteString);
+            System.out.println(notelistStrings);
+            System.out.println(datelist);
+
+            for (int i = 0; i < datelist.size(); i++) {
+                noteList.add(new Note(notelistStrings.get(i), datelist.get(i)));
+            }
+
+            session.setAttribute("notes", noteList);
+
+        }
 
     }
 

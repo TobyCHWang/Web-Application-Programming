@@ -14,7 +14,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <body>
+    <body style="background-color: ${cookie.option.value}">
          <h1>Assign2 Login Page</h1>
         <form action="loginPageController" method="POST">
             Username: <input type="text" name="username"><br/>
