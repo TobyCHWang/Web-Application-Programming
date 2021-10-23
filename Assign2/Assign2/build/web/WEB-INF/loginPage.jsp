@@ -25,13 +25,6 @@
         <br/>
         <a href="loginPageController?register=true">Register New User</a>
         
-     <c:set var="username" value="${param.username}" scope="page"/>
-         
-       <c:forEach var="word" items="${applicationScope.usernames}">
-           
-           <c:set var="usernamelist" value=" ${word.username}" scope="page"/>
-         
-           <c:out value="${usernamelist}"></c:out>
-       </c:forEach>
+    
     </body>
 </html>
