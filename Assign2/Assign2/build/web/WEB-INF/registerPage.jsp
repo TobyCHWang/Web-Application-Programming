@@ -15,7 +15,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <body>
+    <body style="background-color: ${cookie.option.value}">
         <h1>Register New User</h1>
         <form action="registerPageController" method="POST">
             Enter Username: <input type="text" name="usernameRegister"><br/>

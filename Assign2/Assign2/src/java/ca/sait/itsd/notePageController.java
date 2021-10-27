@@ -76,9 +76,7 @@ public class notePageController extends HttpServlet {
         } else if (logoutString.equals("true")) {
             session.invalidate();
             request.setAttribute("message", "Logged out");
-            Cookie optionCookie = new Cookie("option", option);
-            optionCookie.setMaxAge(60 * 60);
-            response.addCookie(optionCookie);
+           
             request.getRequestDispatcher("WEB-INF/loginPage.jsp").forward(request, response);
         }
 
@@ -94,7 +92,7 @@ public class notePageController extends HttpServlet {
                 response.addCookie(optionCookie);
             }
             request.setAttribute("message", "Background colour set");
-            request.getRequestDispatcher("WEB-INF/notePage.jsp").forward(request, response);
+             response.sendRedirect("notePageController?item='true'");
         }
 
         if (deleteString == null) {

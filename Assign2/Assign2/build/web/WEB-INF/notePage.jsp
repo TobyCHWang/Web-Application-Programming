@@ -39,19 +39,27 @@
 
         ${requestScope.message}
         <%String deleteString = request.getParameter("delete");
+            String itemString = request.getParameter("item");
             if (deleteString != null) {
-            out.println("Note deleted");
-          }%>
+                out.println("Note deleted");
+            }
+
+            if (itemString != null) {
+                out.println("Background colour set");
+            }
+
+
+        %>
 
 
 
 
         <h3>Note List</h3>
-        <%
-            String noteString = request.getParameter("note");
+        <%            String noteString = request.getParameter("note");
             ArrayList<Note> noteList = (ArrayList<Note>) request.getSession().getAttribute("notes");
             ArrayList<String> notelistStrings = new ArrayList<String>();
             ArrayList<String> datelist = new ArrayList<String>();
+
             if (noteString == null) {
 
             } else {
@@ -71,7 +79,7 @@
                 <th>Delete</th>
 
 
-                <%                         for (int i = 0; i < datelist.size(); i++) {
+                <%      for (int i = 0; i < datelist.size(); i++) {
                         LocalDateTime localDateTime = LocalDateTime.parse(datelist.get(i));
                         // parse it to a specified format
 
@@ -86,8 +94,6 @@
                                 + "<td>" + "<a href=notePageController?delete=" + datelist.get(i) + "" + ">Delete" + "</td>"
                                 + "</tr>");
                     }
-
-                    
 
                     if (deleteString != null) {
                         ArrayList<Note> list = (ArrayList<Note>) request.getSession().getAttribute("notes");
@@ -126,7 +132,41 @@
 
                 %>
 
-            <h1>${sessionScope.data}</h1>
+
+                <%                    if (noteList == null) {
+
+                    } else {
+                        ArrayList<Note> lists = (ArrayList<Note>) request.getSession().getAttribute("notes");
+                        if (itemString != null) {
+
+                            for (int i = 0; i < noteList.size(); i++) {
+                                notelistStrings.add(noteList.get(i).getNote());
+                                datelist.add(noteList.get(i).getDateTime());
+                            }
+
+                            for (int i = 0; i < datelist.size(); i++) {
+                                LocalDateTime localDateTime = LocalDateTime.parse(datelist.get(i));
+                                // parse it to a specified format
+
+                                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("E MMMdd.HH:mm:ss z yyyy  ");
+
+                                ZonedDateTime zonedDateTime = ZonedDateTime.of(localDateTime, ZoneId.systemDefault());
+                                String formattedString = zonedDateTime.format(formatter);
+
+                                out.println("<tr>"
+                                        + "<td>" + formattedString + "</td>"
+                                        + "<td>" + notelistStrings.get(i) + "</td>"
+                                        + "<td>" + "<a href=notePageController?delete=" + datelist.get(i) + "" + ">Delete" + "</td>"
+                                        + "</tr>");
+                            }
+
+                        }
+                    }
+
+
+                %>
+
+
 
 
 
@@ -144,7 +184,7 @@
         <h3>Set Preferred Background Colour</h3>
 
         <form action="notePageController" method="POST">
-            <input type="radio" name="option" value="white">White 
+            <input type="radio" name="option" value="white" checked>White 
             <input type="radio" name="option" value="Aqua">Aqua 
             <input type="radio" name="option" value="Olive">Olive 
             <input type="submit"  name="background" value="Set Background Colour">
