@@ -31,82 +31,22 @@ public class DBcontroller extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        DBoperations dbOps=new DBoperations();
-        String noteString=request.getParameter("newNote");
-        String action=request.getParameter("action");
-        String deleteString=request.getParameter("delete");
-       
-<<<<<<< HEAD
-       
-=======
->>>>>>> 89a3b284ca8a30d8802c4684f5b80beeed363c99
-        
-        
-        if (action!=null && !action.equals("")) {
-             if (action.equals("add")) {
-                 if (dbOps.addNotes(noteString)) {
-                     request.setAttribute("message", "Note added");
-<<<<<<< HEAD
-                     
-=======
-                     request.setAttribute("noteList", dbOps.getNotes());
->>>>>>> 89a3b284ca8a30d8802c4684f5b80beeed363c99
-                 }else{
-                      request.setAttribute("message", "Error adding note");
-                 }
-            }
-             
-            
-             
-<<<<<<< HEAD
-        
+         String option =request.getParameter("datas");
+         
+         DatabaseOps dbOps=new DatabaseOps();
+         
+         if (option!=null && !option.equals("")) {
+             if (option.equals("Ascending")) {
+                 request.setAttribute("namesList", dbOps.getAscendingUsernames());
+             }else if (option.equals("Descending")) {
+                 request.setAttribute("namesList", dbOps.getDescendingUsernames());
+             }
         }
-        
-         if (deleteString!=null) {
-                     String noteDelete = request.getParameter("noteDelete");
-                    String[] deleteArray = noteDelete.split(",");
-                     String note = deleteArray[0];
-                     String date = deleteArray[1];
-                    
-                       if (deleteString.equals("true")) {
-                             dbOps.deleteNotes(note,date);
-            }
-                    
-                
-=======
-             
-        }
-        
-         if (deleteString!=null) {
-                 if (dbOps.deleteNotes(deleteString)) {
-                     request.setAttribute("message", "Note deleted");
-                     request.setAttribute("noteList", dbOps.getNotes());
-                    
-                    
-                 }else{
-                      request.setAttribute("message", "Error deleting note");
-                       
-                 }
->>>>>>> 89a3b284ca8a30d8802c4684f5b80beeed363c99
-                 
-                 
-            }
-     
-        
-        
-<<<<<<< HEAD
-        request.setAttribute("notes", dbOps.getNotes());
-=======
-        
->>>>>>> 89a3b284ca8a30d8802c4684f5b80beeed363c99
-        
-        request.getRequestDispatcher("WEB-INF/notePage.jsp").forward(request, response);
-        
-        
-        
-       
-    }
+         
+         
+         
+         request.getRequestDispatcher("index.jsp").forward(request, response);
+     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

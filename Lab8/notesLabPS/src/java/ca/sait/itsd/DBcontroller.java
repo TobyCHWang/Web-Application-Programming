@@ -37,21 +37,14 @@ public class DBcontroller extends HttpServlet {
         String action=request.getParameter("action");
         String deleteString=request.getParameter("delete");
        
-<<<<<<< HEAD
        
-=======
->>>>>>> 89a3b284ca8a30d8802c4684f5b80beeed363c99
         
         
         if (action!=null && !action.equals("")) {
              if (action.equals("add")) {
                  if (dbOps.addNotes(noteString)) {
                      request.setAttribute("message", "Note added");
-<<<<<<< HEAD
                      
-=======
-                     request.setAttribute("noteList", dbOps.getNotes());
->>>>>>> 89a3b284ca8a30d8802c4684f5b80beeed363c99
                  }else{
                       request.setAttribute("message", "Error adding note");
                  }
@@ -59,7 +52,6 @@ public class DBcontroller extends HttpServlet {
              
             
              
-<<<<<<< HEAD
         
         }
         
@@ -74,32 +66,13 @@ public class DBcontroller extends HttpServlet {
             }
                     
                 
-=======
-             
-        }
-        
-         if (deleteString!=null) {
-                 if (dbOps.deleteNotes(deleteString)) {
-                     request.setAttribute("message", "Note deleted");
-                     request.setAttribute("noteList", dbOps.getNotes());
-                    
-                    
-                 }else{
-                      request.setAttribute("message", "Error deleting note");
-                       
-                 }
->>>>>>> 89a3b284ca8a30d8802c4684f5b80beeed363c99
                  
                  
             }
      
         
         
-<<<<<<< HEAD
         request.setAttribute("notes", dbOps.getNotes());
-=======
-        
->>>>>>> 89a3b284ca8a30d8802c4684f5b80beeed363c99
         
         request.getRequestDispatcher("WEB-INF/notePage.jsp").forward(request, response);
         
