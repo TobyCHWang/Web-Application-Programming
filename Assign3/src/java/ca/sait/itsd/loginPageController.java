@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -62,7 +63,9 @@ public class loginPageController extends HttpServlet {
         for(int i=0;i<testArrayList.size();i++){
             if(testArrayList.contains(username)){
                  if (password.equals(dbOps.getPassword(username))) {
-                      request.setAttribute("welcomeMessage", username);
+                     HttpSession session = request.getSession();
+                      session.setAttribute("welcomeMessage", username);
+                      request.setAttribute("noteList", dbOps.getNotes(username));
                        request.getRequestDispatcher("WEB-INF/notePage.jsp").forward(request, response);
                        
                 }else{

@@ -18,11 +18,11 @@
     <body style="background-color: ${cookie.option.value}">
         <h1>Note Page</h1>
 
-        <div>Welcome, ${requestScope.welcomeMessage}</div>
+        <div>Welcome, ${sessionScope.welcomeMessage}</div>
 
         <h3>Add Note</h3>
 
-        <form action="notePageController?username=${requestScope.welcomeMessage}" method="POST">
+        <form action="notePageController?username=${sessionScope.welcomeMessage}" method="POST">
             Enter new note: <input type="text" name="newNote">
             <input type="hidden" name="action" value="add">
             <input type="submit" value="Add"> <br>
@@ -42,7 +42,7 @@
              <tr>
                <td>  ${note.dateTime} </td>  
              <td>  ${note.note} </td>
-            <td><a href="notePageController?username=${requestScope.welcomeMessage}&delete= ${note.noteID}">Delete</a></td>
+            <td><a href="notePageController?username=${sessionScope.welcomeMessage}&delete= ${note.noteID}">Delete</a></td>
             
             
        
@@ -57,7 +57,7 @@
         </form>
              <a href="notePageController?logout=true">Logout</a> <br><br>
              
-              <form action="notePageController?username=${requestScope.welcomeMessage}" method="POST">
+              <form action="notePageController?username=${sessionScope.welcomeMessage}" method="POST">
             <input type="radio" name="option" value="white" checked>White 
             <input type="radio" name="option" value="Aqua">Aqua 
             <input type="radio" name="option" value="Olive">Olive 
