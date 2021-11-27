@@ -1,0 +1,56 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov. 26, 2021, 12:04:40 p.m.
+    Author     : toby
+*/
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov. 26, 2021, 10:24:23 a.m.
+    Author     : toby
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Viaoda+Libre&display=swap');
+body{
+    /*source:https://unsplash.com/photos/aLGiPJ4XRO4*/
+    background-image: url("pic/pic3.jpg");
+    background-size: cover;
+    font-size: 25px;
+    font-family: 'Viaoda Libre', cursive;
+}
+
+   table, th, td {border: 1px solid black;}
+ 
+ .link-button {
+      background: none;
+      border: none;
+      color: #1a0dab;
+      text-decoration: underline;
+      cursor: pointer;
+       font-size: 25px;
+    font-family: 'Viaoda Libre', cursive;
+    }
+    
+    tr:hover {background-color: burlywood;}
+
+th {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.borr{
+    border-radius: 20px;
+    border: black solid;
+    background-color: yellow;
+    margin: 3% 37% 20%;
+    padding: 2%;
+    text-align: center;
+
+}
