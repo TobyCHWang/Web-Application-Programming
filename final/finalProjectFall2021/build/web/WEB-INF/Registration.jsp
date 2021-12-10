@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <link href="<c:url value="./css/s.css" />" rel="stylesheet">
+        <link href="<c:url value="./css/r.css" />" rel="stylesheet">
     </head>
     <body>
         <h1>Register New Account</h1>

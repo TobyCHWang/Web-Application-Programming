@@ -71,12 +71,16 @@ public class AdminServices extends HttpServlet {
                 request.setAttribute("userList", dbOps.getUser());
                    request.getRequestDispatcher("WEB-INF/Admin.jsp").forward(request, response);
               }
+            }else{
+                 request.setAttribute("message", "Cannot toggle account type, must have at least one admin user!");
+                request.setAttribute("userList", dbOps.getUser());
+                   request.getRequestDispatcher("WEB-INF/Admin.jsp").forward(request, response);
             }
             
           
         }//locked toggle
         else if (lockedString!=null && usernameString!=null) {
-            if (unLockAdmin==0) {
+            if (adminCount<=1&&type.equals("Admin")) {
                    request.setAttribute("message", "Cannot toggle lock status for account, must have at least one unlocked admin user!");
                 request.setAttribute("userList", dbOps.getUser());
                    request.getRequestDispatcher("WEB-INF/Admin.jsp").forward(request, response);

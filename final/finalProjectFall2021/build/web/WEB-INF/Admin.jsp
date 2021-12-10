@@ -12,7 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         
-         <link href="<c:url value="./css/d.css" />" rel="stylesheet">
+         <link href="<c:url value="./css/a.css" />" rel="stylesheet">
      
   <script>
   function confirmComplete() {
@@ -54,7 +54,7 @@ else
                         <input type="submit" class="link-button" value="Delete"  onclick="{return confirmComplete()}"/>
                     </form>
                         </td>
-                    <td><a href="AdminServices?locked=true&name=${user.username}" >${user.locked}</a></td>
+                    <td><a href="AdminServices?locked=true&name=${user.username}&typeR=${user.usertype}" >${user.locked}</a></td>
                 </tr>
             </c:forEach>
         </table><br>

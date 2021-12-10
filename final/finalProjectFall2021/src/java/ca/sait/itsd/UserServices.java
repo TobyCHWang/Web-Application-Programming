@@ -75,6 +75,7 @@ public class UserServices extends HttpServlet {
             request.getRequestDispatcher("WEB-INF/Login.jsp").forward(request, response);
         }//logout
         else if(logout!=null){
+              session.invalidate();
               request.setAttribute("message", "Logout!");
              request.getRequestDispatcher("WEB-INF/Login.jsp").forward(request, response);
         }
